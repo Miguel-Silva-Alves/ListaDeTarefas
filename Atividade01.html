@@ -6,107 +6,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividade Avaliativa</title>
     <link href="css.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <header>
-        <h1>
-            Lista de tarefas!
-        </h1>
-    </header>
-    <section>
-        <div id="div_entrada">
-            <input maxlength="20" id="txt_tarefa" type="text" placeholder="Digite aqui"> 
+    
 
-            <input id="botao_inserir" type="button" value="Inserir tarefa" onclick="inserir_tarefa()">
-            <input id="botao_ordenar" type="button" value="Ordenar" onclick="ordenar()">
-            
-
-        </div>
-
-        <div id="div_tarefas">
-            <ul id="ul_tarefas"> 
+        <div class="container">
+            <header>
                 
-            </ul>
-          
+            </header>
+            <section>
+                <!--
+                Div com dois botões simples
+                -->
+                <h1 id="titulo">
+                    Lista de tarefas!
+                </h1>
 
+                <div class="input-group" id="div_entrada">
+                    <input type="text" class="form-control" id="txt_tarefa" placeholder="O que andas aprontando?" aria-label="O que andas aprontando?">
+                    <button type="button" id="botao_inserir" class="btn btn-success" onclick="inserir_tarefa()">Inserir tarefa</button>
+                    <button type="button" id="botao_ordenar" class="btn btn-info" onclick="ordenar()">Ordenar</button>
+                  </div>
+                
+
+                <br>
+
+                <img src="imgs/semwork.png" width="38%" height="80%" style="display: block; margin-left: auto; margin-right: auto" id="semwork">
+
+                <!--
+                    Tabela onde as tarefas são listadas
+                -->
+                <div id="divTabelaPrincipal" >
+                    <table id="tbPrincipal" class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <td>Tarefas</td>
+                                <td>Ação 1</td>
+                                <td>Ação 2</td>
+                                <td>Ação 3</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <hr id="linhadivisoria"></hr>
+
+                <div id="botoes">
+
+                    <button type="button" id="botao_show_concluidos" class="btn btn-primary btn_my position-relative" onclick="Mudarestado('divTabelaCon')">
+                        Concluídas <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="spanConcluidas">0</span>
+                    </button>
+
+                    <button type="button" id="botao_show_importantes" class="btn btn-primary btn_my position-relative" onclick="Mudarestado('divTabelaImp')">
+                        Importantes <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="spanImportantes">0</span>
+                    </button>
+
+                    <button type="button" id="botao_show_excluidos" class="btn btn-primary position-relative" onclick="Mudarestado('divTabelaExc')">
+                        Excluídas <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="spanExcluidas">0</span>
+                    </button>
+
+                </div>
+
+                <br/><br/>
+                <div id="divTabelaCon">
+                    <table id="tbCon" class="table">
+                        <thead>
+                            <tr>
+                                <td>Tarefas Concluídas</td>
+                                <td>Data da conclusão</td>
+                                <td>Horário da conclusão</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="divTabelaImp">
+                    <table id="tbImp" class="table">
+                        <thead>
+                            <tr>
+                                <td>Tarefas Importantes</td>
+                                <td>Data da marcação</td>
+                                <td>Horário da marcação</td>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <div id="divTabelaExc">
+                    <table id="tbExc" class="table">
+                        <thead>
+                            <tr>
+                                <td>Tarefas Excluídas</td>
+                                <td>Data da exclusão</td>
+                                <td>Horário da exclusão</td>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div id="ListaOrdenada">
+                    <ul id="tarefas_orde">
+
+                    </ul>
+                </div>
+            </section>
+            <footer>
+
+            </footer>
         </div>
 
-        <br/><br/>
-        <div id="divTabelaCon">
-            <table id="tbCon">
-                <thead>
-                    <tr>
-                        <td>Tarefas Concluídas</td>
-                        <td>Data da conclusão</td>
-                        <td>Horário da conclusão</td>
-                       
-                    </tr>
-                </thead>
-                <tbody>
+        <!-- Button trigger modal 
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>-->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    
+                    <div class="modal-body">
+                        <img src="imgs/sucesso.gif" width="100%" alt="sucesso">
+                    </div>
 
-                </tbody>
-            </table>
-        </div>
-        <div id="divTabelaImp">
-            <table id="tbImp">
-                <thead>
-                    <tr>
-                        <td>Tarefas Importantes</td>
-                        <td>Data da marcação</td>
-                        <td>Horário da marcação</td>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-
-            </table>
-        </div>
-        <div id="divTabelaExc">
-            <table id="tbExc">
-                <thead>
-                    <tr>
-                        <td>Tarefas Excluídas</td>
-                        <td>Data da exclusão</td>
-                        <td>Horário da exclusão</td>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-
-            </table>
+                </div>
+            </div>
         </div>
 
-        <div id="ListaOrdenada">
-            <ul id="tarefas_orde">
-
-            </ul>
-        </div>
-
-        <div id="divTabelaPrincipal">
-            <table id="tbImp">
-                <thead>
-                    <tr>
-                        <td>Tarefas</td>
-                        <td>Ação 1</td>
-                        <td>Ação 2</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-
-            </table>
-        </div>
         
 
-    </section>
-    <footer>
+        
+        
 
-    </footer>
+    
+    
 
     <script src="script.js"></script> 
 <!-- <script src="script meuJeito.js"></script> -->
